@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>DrneetuHomeopathicClinic</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f6f8;
+      color: #333;
+    }
+
+    header {
+      background: #0a7cff;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    section {
+      padding: 30px;
+      max-width: 1000px;
+      margin: auto;
+      background: white;
+      margin-top: 20px;
+      border-radius: 8px;
+    }
+
+    h2 {
+      color: #0a7cff;
+    }
+
+    .info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .box {
+      flex: 1;
+      min-width: 250px;
+    }
+
+    input, textarea, button {
+      width: 100%;
+      padding: 10px;
+      margin-top: 10px;
+    }
+
+    button {
+      background: #0a7cff;
+      color: white;
+      border: none;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    button:hover {
+      background: #055ec4;
+    }
+
+    .review {
+      background: #f1f1f1;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 5px;
+    }
+
+    #chatbox {
+      border: 1px solid #ccc;
+      height: 220px;
+      padding: 10px;
+      overflow-y: auto;
+      margin-bottom: 10px;
+      background: #fafafa;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #ddd;
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>DrneetuHomeopathicClinic</h1>
+  <p>Quality Homeopathic Care You Can Trust</p>
+</header>
+
+<section>
+  <h2>📞 Contact & Location</h2>
+  <div class="info">
+    <div class="box">
+      <p><strong>Phone:</strong> <a href="tel:7425934714">7425934714</a></p>
+      <p><strong>Email:</strong> <a href="mailto:nitubhms@yahoo.com">nitubhms@yahoo.com</a></p>
+      <p>
+        <strong>Address:</strong><br>
+        DrNeetuHomeopathicClinic Vistar, near D-Mart,<br>
+        Shop No. 7, II Floor, Shop 17,<br>
+        Green Park Colony, Ramnagariya,<br>
+        Jagatpura, Jaipur, Rajasthan – 302017
+      </p>
+    </div>
+
+    <div class="box">
+      <iframe
+        src="https://www.google.com/maps?q=DrNeetuHomeopathicClinic%20Jagatpura%20Jaipur&output=embed"
+        width="100%" height="220" style="border:0;" loading="lazy">
+      </iframe>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>📅 Book an Appointment</h2>
+  <form>
+    <input type="text" placeholder="Full Name" required>
+    <input type="tel" placeholder="Phone Number" required>
+    <input type="date" required>
+    <textarea placeholder="Reason for Visit"></textarea>
+    <button type="submit">Book Appointment</button>
+  </form>
+</section>
+
+<section>
+  <h2>⭐ Patient Reviews</h2>
+
+  <div id="reviews">
+    <div class="review">
+      <strong>John D.</strong>
+      <p>Excellent treatment and very caring doctor.</p>
+    </div>
+  </div>
+
+  <h3>Add Your Review</h3>
+  <input type="text" id="reviewName" placeholder="Your Name">
+  <textarea id="reviewText" placeholder="Write your review"></textarea>
+  <button onclick="addReview()">Submit Review</button>
+</section>
+
+<section>
+  <h2>💬 Chat with Our Assistant</h2>
+  <div id="chatbox"></div>
+  <input type="text" id="userInput" placeholder="Type your message...">
+  <button onclick="sendMessage()">Send</button>
+</section>
+
+<footer>
+  © 2026 DrneetuHomeopathicClinic. All rights reserved.
+</footer>
+
+<script>
+  // Add Review Feature
+  function addReview() {
+    const name = document.getElementById("reviewName").value.trim();
+    const text = document.getElementById("reviewText").value.trim();
+
+    if (name === "" || text === "") {
+      alert("Please enter your name and review.");
+      return;
+    }
+
+    const reviewDiv = document.createElement("div");
+    reviewDiv.className = "review";
+    reviewDiv.innerHTML = `<strong>${name}</strong><p>${text}</p>`;
+
+    document.getElementById("reviews").appendChild(reviewDiv);
+
+    document.getElementById("reviewName").value = "";
+    document.getElementById("reviewText").value = "";
+  }
+
+  // Advanced Chatbot
+  function sendMessage() {
+    const input = document.getElementById("userInput");
+    const chatbox = document.getElementById("chatbox");
+    const userText = input.value.toLowerCase().trim();
+
+    if (userText === "") return;
+
+    chatbox.innerHTML += `<p><strong>You:</strong> ${input.value}</p>`;
+
+    let reply = "";
+
+    if (userText.includes("appointment") || userText.includes("book")) {
+      reply = `📅 Book an appointment using the form above or call 
+      <a href="tel:7425934714">7425934714</a>.`;
+    } 
+    else if (userText.includes("location") || userText.includes("address")) {
+      reply = `📍 We are located near D-Mart, Jagatpura, Jaipur.`;
+    } 
+    else if (userText.includes("contact") || userText.includes("call")) {
+      reply = `📞 Call us at <a href="tel:7425934714">7425934714</a><br>
+      📧 nitubhms@yahoo.com`;
+    } 
+    else if (userText.includes("time") || userText.includes("timing")) {
+      reply = `⏰ Monday–Saturday: 10 AM – 7 PM<br>Sunday: Appointment only`;
+    } 
+    else {
+      reply = `🤖 I can help with appointments, location, contact details,
+      timings, and services.`;
+    }
+
+    chatbox.innerHTML += `<p><strong>Assistant:</strong> ${reply}</p>`;
+    input.value = "";
+    chatbox.scrollTop = chatbox.scrollHeight;
+  }
+</script>
+
+</body>
+</html>
+
